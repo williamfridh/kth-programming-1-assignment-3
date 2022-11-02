@@ -11,7 +11,7 @@ Fadil Galjic
 
 ****************************************************************/
 
-public class LinkedNumberSequence implements NumberSequence
+public class LinkedNumberSequence //implements NumberSequence REMOVE COMMENT IN PRODUCTION
 {
 	private class Node
 	{
