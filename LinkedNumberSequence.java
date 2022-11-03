@@ -11,7 +11,7 @@ Fadil Galjic
 
 ****************************************************************/
 
-public class LinkedNumberSequence //implements NumberSequence REMOVE COMMENT IN PRODUCTION
+public class LinkedNumberSequence implements NumberSequence
 {
 	private class Node
 	{
@@ -59,5 +59,147 @@ public class LinkedNumberSequence //implements NumberSequence REMOVE COMMENT IN 
 		return s;
 	}
 
-    // add code here
+	/* ================================================ STUDENT CODE ================================================ */
+
+    public int length ()  {
+		int i = 1;
+		Node node = first;
+		while (node.next != null) {
+			i++;
+			node = node.next;
+		}
+		return i;
+	}
+
+	public double upperBound() {
+		double number = first.number;
+		Node node = first;
+		while (node.next != null) {
+			node = node.next;
+			if (node.number >= number) {
+				number = node.number;
+			}
+		}
+		return number;
+	}
+
+	public double lowerBound() {
+		double number = first.number;
+		Node node = first;
+		while (node.next != null) {
+			node = node.next;
+			if (node.number <= number) {
+				number = node.number;
+			}
+		}
+		return number;
+	}
+
+	public double numberAt(int position) throws IndexOutOfBoundsException {
+		if (position - 0 > length()) {
+			throw new IndexOutOfBoundsException();
+		}
+		Node node = first;
+		for (int i = 0; i < position; i++) {
+			node = node.next;
+		}
+		return node.number;
+	}
+
+	public int positionOf(double number) {
+		Node node = first;
+		for (int i = 1; i < length(); i++) {
+			node = node.next;
+			if (node.number == number) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	public boolean isIncreasing() {
+		Node currentNode = first;
+		Node nextNode = first.next;
+
+		for (int i = 1; i < length(); i++) {
+			if (currentNode.number >= nextNode.number) {
+				return false;
+			}
+			currentNode = currentNode.next;
+			nextNode = currentNode.next;
+		}
+
+		return true;
+	}
+
+	public boolean isDecreasing() {
+		return !isIncreasing();
+	}
+
+	public boolean contains(double number) {
+		Node node = first;
+		while (node.next != null) {
+			node = node.next;
+			if (node.number == number) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void add(double number) {
+		Node node = first;
+		while (node.next != null) {
+			node = node.next;
+		}
+		node.next = new Node(number);
+	}
+
+	public void insert(int position, double number) throws IndexOutOfBoundsException {
+		if (position - 0 > length()) {
+			throw new IndexOutOfBoundsException();
+		}
+
+		Node node = first;
+
+		for (int i = 1; i < position; i++) {
+			node = node.next;
+		}
+
+		Node insertedNode = new Node(number);
+		insertedNode.next = node.next;
+		node.next = insertedNode;
+
+	}
+
+	public void removeAt(int position) throws IndexOutOfBoundsException {
+		if (position - 0 > length()) {
+			throw new IndexOutOfBoundsException();
+		}
+		if (length() <= 2) {
+			throw new IllegalStateException();
+		}
+
+		Node node = first;
+
+		for (int i = 1; i < position; i++) {
+			node = node.next;
+		}
+
+		node.next = node.next.next;
+
+	}
+
+	public double[] asArray() {
+		double[] array = new double[length()];
+		Node node = first;
+		for (int i = 0; i < length(); i++) {
+			array[i] = node.number;
+			node = node.next;
+		}
+		return array;
+	}
+
+	/* ================================================ END STUDENT CODE ================================================ */
+
 }
