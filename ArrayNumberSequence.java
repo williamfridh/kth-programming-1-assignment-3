@@ -155,7 +155,11 @@ public class ArrayNumberSequence implements NumberSequence
 	}
 
 	public double[] asArray () {
-		return this.numbers;
+		double[] deepCopy = new double[this.numbers.length];
+		for (int i = 0; i < this.numbers.length; i++) {
+			deepCopy[i] = this.numbers[i];
+		}
+		return deepCopy;
 	}
  
 	/* ================================================ END STUDENT CODE ================================================ */
