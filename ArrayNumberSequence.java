@@ -133,8 +133,8 @@ public class ArrayNumberSequence implements NumberSequence
 		}
 	}
 
-	public void removeAt (int position) throws IndexOutOfBoundsException {
-		if (this.numbers.length <= 2) {
+	public void removeAt (int position) throws IndexOutOfBoundsException, IllegalStateException {
+		if (this.numbers.length < 2) {
 			throw new IllegalStateException();
 		}
 		try {

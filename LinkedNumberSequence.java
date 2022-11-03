@@ -172,11 +172,11 @@ public class LinkedNumberSequence implements NumberSequence
 
 	}
 
-	public void removeAt(int position) throws IndexOutOfBoundsException {
+	public void removeAt(int position) throws IndexOutOfBoundsException, IllegalStateException {
 		if (position - 0 > length()) {
 			throw new IndexOutOfBoundsException();
 		}
-		if (length() <= 2) {
+		if (length() < 2) {
 			throw new IllegalStateException();
 		}
 
